@@ -1,0 +1,2 @@
+import './CustomComponent'
+import './button'

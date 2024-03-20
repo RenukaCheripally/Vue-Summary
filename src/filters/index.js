@@ -1,0 +1,2 @@
+import './Capitalize';
+import './Reversed';
