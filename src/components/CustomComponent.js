@@ -5,9 +5,11 @@ const template = `
     <div>
         <h1>{{ message }}</h1>
         <div>
+            <slot name="header"></slot>
             <button v-on:click="dec()">-</button>
-            <b>{{ getCount }}</b>
+            <b>{{ getCounter }}</b>
             <button v-on:click="inc()">+</button>
+            <slot name="footer" message1="Scoped slot data"></slot>
         </div>
     </div>
 `;
@@ -27,7 +29,7 @@ let props = {
 
 Vue.component('custom-component', {
     computed:{
-        ...mapGetters(['getCount'])
+        ...mapGetters(['getCount', 'getCounter'])
     },
     template,
     data,
