@@ -12,16 +12,21 @@
     </custom-component>
     <v-button :clickButton="openAlert" buttonName="success"></v-button>
     <v-button :clickButton="openAlert" buttonName="failure"></v-button>
+    <error-message></error-message>
   </div>
 </template>
 
 <script>
 import { Alert } from '../mixins/Warning.js';
+import errorMessage from './errorMessage.vue';
 import {mapGetters} from 'vuex';
 export default {
   mixins: [Alert],
   computed:{
     ...mapGetters(['getCount', 'getCounter'])
+  },
+  components: {
+    errorMessage
   },
   data() {
     return  {
