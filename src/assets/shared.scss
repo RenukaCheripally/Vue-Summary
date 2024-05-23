@@ -1,0 +1,68 @@
+.card {
+  background-color: white;
+  margin: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  height: 95vh;
+  padding: 10px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 300px 500px 100px;
+  grid-gap: 20px;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.frequency-selection {
+  display: flex;
+  gap: 10px;
+  @media only screen and (max-width: 600px) {
+    .frequency-selection {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+}
+
+h1 {
+  font-size: 1.2em;
+  margin: 0;
+}
+
+.header {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.label {
+  font-size: .8em;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 15px;
+}
+
+p {
+  font-size: 1em;
+  color: #333;
+}
+
+.section {
+  & > :first-child {
+    margin-top: 20px;
+  }
+  border-bottom: 1px solid #E5E5E5;
+  padding-bottom: 20px;
+}
+
+.validity {
+  display: flex;
+}

@@ -1,0 +1,7 @@
+.v-checkbox {
+  align-items: center;
+  display: flex;
+  .checkbox {
+    cursor: pointer;
+  }
+}

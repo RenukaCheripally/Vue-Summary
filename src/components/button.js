@@ -1,24 +1,28 @@
 import Vue from 'vue';
 import '../assets/button.css'
 
-const template= `
+const template = `
 <div>
-    <button class="button" v-on:click="click">{{ buttonName }}</button>
+    <button class="button" v-bind:class="type" v-on:click="click">{{ buttonName }}</button>
 </div>
 `;
 
 Vue.component('v-button', {
-    template,
-    props: {
-        buttonName: {
-            type: String,
-            default: 'Guess'
-        },
-        clickButton: Function,
+  template,
+  props: {
+    buttonName: {
+      type: String,
+      default: 'Guess'
     },
-    methods: {
-        click() {
-            this.clickButton(this.buttonName);
-        }
+    clickButton: Function,
+    type: {
+      type: String,
+      default: 'save'
     }
+  },
+  methods: {
+    click() {
+      this.clickButton(this.buttonName);
+    }
+  }
 })
