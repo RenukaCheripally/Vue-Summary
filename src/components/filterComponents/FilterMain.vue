@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="filters-applied" v-if="appliedFilters.length > 0">
-      <div v-for="filter in appliedFilters" :key="filter.id">
+      <div v-for="(filter, filterIndex) in appliedFilters" :key="filter.id">
         <div class="container">
           <span class="label">{{ filter.label }}</span>
           <component :is="components[filter.filter]" :value="filter.value" />
@@ -9,14 +9,14 @@
             v-if="components[filter.filter] !== undefined"
             buttonName="Delete"
             type="danger"
-            :clickButton="deleteFilter"
+            :clickButton="() => deleteFilter(filterIndex)"
           />
         </div>
       </div>
     </div>
     <div class="container">
-      <v-select :options="options" v-model="selectedFilter" />
-      <component :is="components[selectedFilter]" :value="newFilter"></component>
+      <v-select :options="options" v-model="selectedFilter" :value="selectedFilter" />
+      <component :is="components[selectedFilter]" :value="newFilter" @update="handleUpdate" />
       <v-button
         v-if="components[selectedFilter] !== undefined"
         :clickButton="addFilter"
@@ -37,21 +37,9 @@ export default {
       components: {
         segment: 'segment',
         email_address: 'emailAddress',
-        after_activity: 'afterActivity'
-      },
-      objects: {
-        segment: {
-          status: '',
-        },
-        email_address: {
-          selection: '',
-          expression: ''
-        },
-        after_activity: {
-          delay: '',
-          pointChange: '',
-          activityCode: ''
-        }
+        after_activity: 'afterActivity',
+        last_purchase: 'lastPurchase',
+        points_expire: 'pointsExpire'
       },
       selectedFilter: 'add',
       options: [
@@ -139,25 +127,26 @@ export default {
       ]
     }
   },
-  created() {
-    this.initFilterObject();
-  },
   methods: {
-    initFilterObject(component) {
-      debugger;
-      this.newFilter = this.objects[component ? component : this.selectedFilter];
+    handleUpdate(updatedData) {
+      this.newFilter = updatedData;
     },
     addFilter() {
-      console.log(this.objects)
       this.appliedFilters.push({
         id: this.appliedFilters.length + 1,
         filter: this.selectedFilter,
         label: this.options.find(option => option.value === this.selectedFilter).label,
-        value: this.objects[this.selectedFilter]
+        value: this.newFilter
       })
+      console.log(this.appliedFilters);
+      this.resetFilter();
     },
-    deleteFilter() {
-      this.appliedFilters.pop();
+    deleteFilter(filterIndex) {
+      this.appliedFilters.splice(filterIndex, 1);
+    },
+    resetFilter() {
+      this.selectedFilter = 'add';
+      this.newFilter = {};
     }
   }
 }

@@ -1,13 +1,14 @@
 import Vue from "vue";
+import { DefaultConditionComponent } from '../../mixins/conditionComponent.js';
 
 const template = `
   <div>
-    <v-select placeholder="Enter Name" :options="options" affix="prefix" v-model="selection">
+    <v-select placeholder="Enter Name" :options="options" affix="prefix" v-model="localValue.selection" @input="updateParent">
       <template v-slot:prefix>
         Selection
       </template>
     </v-select>
-    <v-input affix="prefix" v-model="expression" value="expression">
+    <v-input affix="prefix" v-model="localValue.expression" @input="updateParent">
       <template v-slot:prefix>
         Expression
       </template>
@@ -17,22 +18,9 @@ const template = `
 
 Vue.component('emailAddress', {
   template,
-  props: {
-    value: {
-      type: Object,
-    }
-  },
-  created() {
-    if (this.value) {
-      const { selection, expression } = this.value;
-      this.selection = selection;
-      this.expression = expression;
-    }
-  },
+  mixins: [DefaultConditionComponent],
   data() {
     return {
-      selection: '',
-      expression: '',
       options: [
         {
           value: 'regex',

@@ -1,9 +1,10 @@
 import Vue from "vue";
 Vue.config.devtools = true;
+import { DefaultConditionComponent } from '../../mixins/conditionComponent.js';
 
 const template = `
   <div>
-    <v-select placeholder="Enter Name" :options="options" affix="prefix" v-model="status">
+    <v-select placeholder="Enter Name" :options="options" affix="prefix" v-model="localValue.status" @input="updateParent">
       <template v-slot:prefix>
         Status
       </template>
@@ -13,20 +14,9 @@ const template = `
 
 Vue.component('segment', {
   template,
-  props: {
-    value: {
-      type: Object,
-    },
-  },
-  created() {
-    if (this.value) {
-      const { status } = this.value;
-      this.status = status;
-    }
-  },
+  mixins: [DefaultConditionComponent],
   data() {
     return {
-      status: '',
       options: [
         {
           value: 'tester',

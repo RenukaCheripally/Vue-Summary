@@ -3,28 +3,20 @@ import { DefaultConditionComponent } from '../../mixins/conditionComponent.js';
 
 const template = `
   <div>
-    <v-input affix="presuffix" v-model="localValue.delay" @input="updateParent">
+    <v-input affix="prefix" v-model="localValue.points" @input="updateParent">
       <template v-slot:prefix>
-        Delay
-      </template>
-      <template v-slot:suffix>
-        Days
+        Points
       </template>
     </v-input>
-    <v-select placeholder="Enter Name" :options="options" affix="prefix" v-model="localValue.pointChange" @input="updateParent">
+    <v-input affix="prefix" v-model="localValue.expiryYear" @input="updateParent">
       <template v-slot:prefix>
-        Point change
-      </template>
-    </v-select>
-    <v-input affix="prefix" v-model="localValue.activityCode" @input="updateParent">
-      <template v-slot:prefix>
-        Activity code
+        Expiry year
       </template>
     </v-input>
   </div>
 `;
 
-Vue.component('afterActivity', {
+Vue.component('pointsExpire', {
   mixins: [DefaultConditionComponent],
   template,
   data() {

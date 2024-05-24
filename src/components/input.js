@@ -9,7 +9,7 @@ const template = `
   <label class="label">{{ label }}</label>
   <div class="input-group" v-bind:class="affix">                           
     <span v-if="['prefix', 'presuffix'].includes(affix)" class="affix"><slot name="prefix"></slot></span>
-    <input class="input" v-bind:placeholder="placeholder" type="text" v-model="value" name="input">
+    <input class="input" v-bind:placeholder="placeholder" type="text" v-model="inputValue" name="input">
     <span v-if="['suffix', 'presuffix'].includes(affix)" class="affix "><slot name="suffix"></slot></span>
   </div>
   </div>
@@ -17,20 +17,9 @@ const template = `
 
 Vue.component('v-input', {
   template,
-  data() {
-    return {
-      inputValue: ''
-    }
-  },
-  created() {
-    if (this.value) {
-      this.inputValue = this.value;
-    }
-  },
   props: {
     value: {
-      type: String,
-      required: true
+      type: String
     },
     label: {
       type: String
@@ -41,5 +30,15 @@ Vue.component('v-input', {
     affix: {
       type: String
     }
-  }
+  },
+  computed: {
+    inputValue: {
+      get() {
+        return this.value || '';
+      },
+      set(newValue) {
+        this.$emit('input', newValue);
+      }
+    }
+  },
 });

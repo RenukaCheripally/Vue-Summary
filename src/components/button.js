@@ -22,7 +22,7 @@ Vue.component('v-button', {
   },
   methods: {
     click() {
-      this.clickButton(this.buttonName);
+      this.clickButton();
     }
   }
 })

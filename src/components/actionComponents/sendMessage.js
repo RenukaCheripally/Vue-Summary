@@ -1,14 +1,15 @@
 import Vue from "vue";
+import { DefaultConditionComponent } from '../../mixins/conditionComponent.js';
 
 const template = `
   <div class="send-message">
     <div class="input-list">
       <div class="container">
         <span class="label">Channel: </span>
-        <v-select placeholder="Enter Name" :options="options" v-model="selection" />
+        <v-select placeholder="Enter Name" :options="options" v-model="localValue.channel" @input="updateParent"/>
       </div>
-      <v-input label="Message Title" placeholder="Message Title" v-model="title" />
-      <v-input label="Text" placeholder="Text" v-model="text" />
+      <v-input label="Message Title" placeholder="Message Title" v-model="localValue.title" @input="updateParent"/>
+      <v-input label="Text" placeholder="Text" v-model="localValue.text" @input="updateParent"/>
       <div>
         <p>{{ line1 }}</p>
         <p>{{ line2 }}</p>
@@ -25,22 +26,9 @@ const template = `
 
 Vue.component('sendMessage', {
   template,
-  props: {
-    value: {
-      type: Object,
-    }
-  },
-  created() {
-    if (this.value) {
-      const { selection, expression } = this.value;
-      this.selection = selection;
-      this.expression = expression;
-    }
-  },
+  mixins: [DefaultConditionComponent],
   data() {
     return {
-      title: '',
-      text: '',
       line1: 'It is possible to insert certain variables into the text which get replaced.',
       line2: 'Variables are declared with {{ and }} (e.g.{{ first_name }}).',
       variables: [
@@ -69,8 +57,6 @@ Vue.component('sendMessage', {
           key: 'age',
         }
       ],
-      selection: '',
-      expression: '',
       options: [
         {
           value: 'web_devs',

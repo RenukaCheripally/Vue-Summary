@@ -7,16 +7,16 @@
       <section class="section main">
         <div class="container">
           <span class="label">Name:</span>
-          <v-input placeholder="Enter Name" value="name" />
+          <v-input placeholder="Enter Name" />
         </div>
         <v-checkbox :value="true" />
         <div class="validity">
-          <v-input label="Valid from" affix="suffix" value="validFrom">
+          <v-input label="Valid from" affix="suffix">
             <template v-slot:suffix>
               ✖
             </template>
           </v-input>
-          <v-input label="Valid until" affix="suffix" value="validUntil">
+          <v-input label="Valid until" affix="suffix">
             <template v-slot:suffix>
               ✖
             </template>
@@ -32,7 +32,7 @@
           <span class="label">Maximum Frequency:</span>
           <div class="frequency-selection">
             <v-checkbox label="Only once" :value="false"/>
-            <v-input affix="suffix" value="days">
+            <v-input affix="suffix">
               <template v-slot:suffix>days</template>
             </v-input>
           </div>

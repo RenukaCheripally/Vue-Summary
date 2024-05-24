@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    newFilter: {},
+    selectedFilter: 'add',
   },
   actions: {
     inc(context) {
@@ -23,8 +23,8 @@ const store = new Vuex.Store({
     }
   },
   getters: {
-    getCount(state) {
-      return state.counter;
+    getSelectedFilter(state) {
+      return state.selectedFilter;
     },
     getCounter(state) {
       return 3;

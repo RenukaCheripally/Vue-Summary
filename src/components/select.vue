@@ -1,45 +1,46 @@
-import Vue from 'vue';
-import '@/assets/select.css';
-
-const template = `
+<template>
   <div class="v-select" v-bind:class="affix">                           
     <span v-if="affix==='prefix'" class="affix"><slot name="prefix"></slot></span>
-    <select class="select" v-model="selectedValue" @change="handleChange">
+    <select class="select" v-model="selectedValue" v-on:change="handleChange">
       <option v-for="option in options" :value="option.value">{{ option.label }}</option>
     </select>
     <span v-if="affix==='suffix'" class="affix "><slot name="suffix"></slot></span>
   </div>
-`;
+</template>
 
-// Define the select dropdown component
-Vue.component('v-select', {
-  template,
+<script>
+import '@/assets/select.css';
+export default {
+  name: 'v-select',
   props: {
     options: {
       type: Array,
       required: true,
     },
     value: {
-      type: String,
+      type: String|undefined,
+      required: true,
     },
     affix: {
       type: String
     },
     onSelect: Function,
   },
-  computed: {
-    selectedValue: {
-      get() {
-        return this.value || 'add';
-      },
-      set(newValue) {
-        this.$emit('input', newValue);
-      }
+  created() {
+    if (this.value) {
+      this.selectedValue = this.value;
+    }
+  },
+  data() {
+    return {
+      selectedValue: '',
     }
   },
   methods: {
     handleChange(event) {
+      // this.$emit('input', event.target.value);
       this.$emit('input', event.target.value);
     },
   }
-});
+}
+</script>

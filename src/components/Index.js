@@ -9,4 +9,6 @@ import './triggerComponents/daily'
 import './filterComponents/segment';
 import './filterComponents/emailAddress';
 import './filterComponents/afterActivity';
+import './filterComponents/pointsExpire';
+import './filterComponents/lastPurchase';
 import './actionComponents/sendMessage';

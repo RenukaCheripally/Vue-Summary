@@ -1,37 +1,37 @@
 <template>
   <div>
     <section class="actions-applied" v-if="appliedActions.length > 0">
-      <div v-for="filter in appliedActions" :key="filter.id">
+      <div v-for="(action, actionIndex) in appliedActions" :key="action.id">
         <div class="applied-action-container">
           <header class="action-header">
-            <span class="label">{{ filter.label }}</span>
+            <span class="label">{{ action.label }}</span>
             <v-button
-              v-if="components[filter.filter] !== undefined"
+              v-if="components[action.action] !== undefined"
               buttonName="Delete"
               type="danger"
-              :clickButton="deleteFilter"
+              :clickButton="() => deleteAction(actionIndex)"
             />
           </header>
           <div class="action-content">
-            <component :is="components[filter.filter]" :value="filter.value" />
+            <component :is="components[action.action]" :value="action.value" />
           </div>
         </div>
       </div>
     </section>
     <section>
-      <v-select :options="options" v-model="selectedFilter" />
-      <div v-if="!['add', undefined].includes(selectedFilter) && components[selectedFilter] !== undefined" class="applied-action-container">
+      <v-select :options="options" v-model="selectedAction" />
+      <div v-if="!['add', undefined].includes(selectedAction) && components[selectedAction] !== undefined" class="applied-action-container">
         <header class="action-header">
-          <span class="label">{{ selectedFilter }}</span>
+          <span class="label">{{ selectedAction }}</span>
           <v-button
-            v-if="components[selectedFilter] !== undefined"
-            :clickButton="addFilter"
+            v-if="components[selectedAction] !== undefined"
+            :clickButton="addAction"
             buttonName="Add"
             type="save"
           />
         </header>
         <div class="action-content">
-          <component :is="components[selectedFilter]" :value="objects[segment]"></component>
+          <component :is="components[selectedAction]" :value="newAction" @update="handleUpdate"></component>
         </div>
       </div>
     </section>
@@ -44,15 +44,11 @@ export default {
   name: 'ActionsMain',
   data() {
     return {
+      newAction: {},
       components: {
         send_message: 'sendMessage',
       },
-      objects: {
-        segment: {
-          status: '',
-        }
-      },
-      selectedFilter: 'add',
+      selectedAction: 'add',
       options: [
         {
           value: 'add',
@@ -80,31 +76,39 @@ export default {
         },
       ],
       appliedActions: [
-        {
-          id: 1,
-          filter: 'send_message',
-          label: 'Send Message',
-          value: {
-            delay: '10',
-            pointChange: 'plus',
-            activityCode: 'MANUAL_BOOKING'
-          }
-        }
+        // {
+        //   id: 1,
+        //   action: 'send_message',
+        //   label: 'Send Message',
+        //   value: {
+        //     delay: '10',
+        //     pointChange: 'plus',
+        //     activityCode: 'MANUAL_BOOKING'
+        //   }
+        // }
       ]
     }
   },
   methods: {
-    addFilter() {
-      console.log(this.objects)
+    handleUpdate(updatedData) {
+      this.newAction = updatedData;
+    },
+    addAction() {
       this.appliedActions.push({
         id: this.appliedActions.length + 1,
-        filter: this.selectedFilter,
-        label: this.options.find(option => option.value === this.selectedFilter).label,
-        value: this.objects[this.selectedFilter]
+        action: this.selectedAction,
+        label: this.options.find(option => option.value === this.selectedAction).label,
+        value: this.newAction
       })
+      console.log(this.appliedActions);
+      this.resetAction();
     },
-    deleteFilter() {
-      this.appliedActions.pop();
+    deleteAction(actionIndex) {
+      this.appliedActions.splice(actionIndex, 1);
+    },
+    resetAction() {
+      this.selectedAction = 'add';
+      this.newAction = {};
     }
   }
 }
