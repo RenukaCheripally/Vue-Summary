@@ -8,12 +8,12 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/posts',
       name: 'Posts',
       component: Posts
     },
     {
-      path: '/automations',
+      path: '/',
       name: 'Automations',
       component: AutomationView
     }
