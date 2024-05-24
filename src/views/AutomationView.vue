@@ -7,16 +7,16 @@
       <section class="section main">
         <div class="container">
           <span class="label">Name:</span>
-          <v-input placeholder="Enter Name" />
+          <v-input placeholder="Enter Name" value="name" />
         </div>
-        <v-checkbox value="true" />
+        <v-checkbox :value="true" />
         <div class="validity">
-          <v-input label="Valid from" affix="suffix">
+          <v-input label="Valid from" affix="suffix" value="validFrom">
             <template v-slot:suffix>
               ✖
             </template>
           </v-input>
-          <v-input label="Valid until" affix="suffix">
+          <v-input label="Valid until" affix="suffix" value="validUntil">
             <template v-slot:suffix>
               ✖
             </template>
@@ -31,8 +31,8 @@
         <div class="container">
           <span class="label">Maximum Frequency:</span>
           <div class="frequency-selection">
-            <v-checkbox label="Only once" />
-            <v-input affix="suffix">
+            <v-checkbox label="Only once" :value="false"/>
+            <v-input affix="suffix" value="days">
               <template v-slot:suffix>days</template>
             </v-input>
           </div>
@@ -65,6 +65,10 @@ export default {
   },
   data() {
     return {
+      name: '',
+      validFrom: '',
+      validUntil: '',
+      days: ''
     }
   }
 }

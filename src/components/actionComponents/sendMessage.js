@@ -7,8 +7,8 @@ const template = `
         <span class="label">Channel: </span>
         <v-select placeholder="Enter Name" :options="options" v-model="selection" />
       </div>
-      <v-input label="Message Title" placeholder="Message Title" />
-      <v-input label="Text" placeholder="Text" />
+      <v-input label="Message Title" placeholder="Message Title" v-model="title" />
+      <v-input label="Text" placeholder="Text" v-model="text" />
       <div>
         <p>{{ line1 }}</p>
         <p>{{ line2 }}</p>
@@ -39,6 +39,8 @@ Vue.component('sendMessage', {
   },
   data() {
     return {
+      title: '',
+      text: '',
       line1: 'It is possible to insert certain variables into the text which get replaced.',
       line2: 'Variables are declared with {{ and }} (e.g.{{ first_name }}).',
       variables: [

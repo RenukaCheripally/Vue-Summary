@@ -1,12 +1,15 @@
 import Vue from "vue";
+Vue.config.devtools = true;
 
-const template = `  <div>
-<v-select placeholder="Enter Name" :options="options" affix="prefix" v-model="status">
-  <template v-slot:prefix>
-    Status
-  </template>
-</v-select>
-</div>`;
+const template = `
+  <div>
+    <v-select placeholder="Enter Name" :options="options" affix="prefix" v-model="status">
+      <template v-slot:prefix>
+        Status
+      </template>
+    </v-select>
+  </div>
+`;
 
 Vue.component('segment', {
   template,

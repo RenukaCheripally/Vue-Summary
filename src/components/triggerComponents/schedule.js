@@ -1,7 +1,7 @@
 import Vue from "vue";
 
 const template = `  <div>
-<v-input affix="prefix">
+<v-input affix="prefix" value="time">
   <template v-slot:prefix>
     Time
   </template>
@@ -17,6 +17,7 @@ Vue.component('schedule', {
   template,
   data() {
     return {
+      time: '',
       options: [
         {
           value: 'daily',

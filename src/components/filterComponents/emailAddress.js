@@ -7,7 +7,7 @@ const template = `
         Selection
       </template>
     </v-select>
-    <v-input affix="prefix" v-model="expression">
+    <v-input affix="prefix" v-model="expression" value="expression">
       <template v-slot:prefix>
         Expression
       </template>

@@ -2,7 +2,7 @@ import Vue from "vue";
 
 const template = `
   <div>
-    <v-input affix="presuffix" v-model="delay">
+    <v-input affix="presuffix" v-model="delay" value="delay">
       <template v-slot:prefix>
         Delay
       </template>
@@ -15,7 +15,7 @@ const template = `
         Point change
       </template>
     </v-select>
-    <v-input affix="prefix" v-model="activityCode">
+    <v-input affix="prefix" v-model="activityCode" value="activityCode">
       <template v-slot:prefix>
         Activity code
       </template>

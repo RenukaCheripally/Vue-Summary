@@ -16,7 +16,7 @@
     </div>
     <div class="container">
       <v-select :options="options" v-model="selectedFilter" />
-      <component :is="components[selectedFilter]" :value="objects[segment]"></component>
+      <component :is="components[selectedFilter]" :value="newFilter"></component>
       <v-button
         v-if="components[selectedFilter] !== undefined"
         :clickButton="addFilter"
@@ -33,6 +33,7 @@ export default {
   name: 'FilterMain',
   data() {
     return {
+      newFilter: {},
       components: {
         segment: 'segment',
         email_address: 'emailAddress',
@@ -41,6 +42,15 @@ export default {
       objects: {
         segment: {
           status: '',
+        },
+        email_address: {
+          selection: '',
+          expression: ''
+        },
+        after_activity: {
+          delay: '',
+          pointChange: '',
+          activityCode: ''
         }
       },
       selectedFilter: 'add',
@@ -129,7 +139,14 @@ export default {
       ]
     }
   },
+  created() {
+    this.initFilterObject();
+  },
   methods: {
+    initFilterObject(component) {
+      debugger;
+      this.newFilter = this.objects[component ? component : this.selectedFilter];
+    },
     addFilter() {
       console.log(this.objects)
       this.appliedFilters.push({
