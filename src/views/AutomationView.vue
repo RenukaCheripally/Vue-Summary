@@ -1,6 +1,6 @@
 <template>
   <card>
-    <header>
+    <header class="main-header">
       <h1>Create Automated Action</h1>
     </header>
     <content class="content">
@@ -39,15 +39,12 @@
         </div>
       </section>
       <section class="section">
-        <div class="">
-          <span class="label header">Filter conditions:</span>
-          <FilterMain />
-        </div>
+        <span class="label header">Filter conditions:</span>
+        <FilterMain />
       </section>
       <section class="section">
-        <div class="container">
-          <span class="label">Actions:</span>
-        </div>
+        <span class="label header">Actions:</span>
+        <ActionsMain />
       </section>
     </content>
     <Footer />
@@ -57,12 +54,14 @@
 import Footer from '@/components/Footer'
 import TriggerMain from '../components/triggerComponents/TriggerMain.vue';
 import FilterMain from '../components/filterComponents/FilterMain.vue';
+import ActionsMain from '../components/actionComponents/ActionsMain.vue';
 export default {
   name: 'AutomationView',
   components: {
     Footer,
     TriggerMain,
-    FilterMain
+    FilterMain,
+    ActionsMain
   },
   data() {
     return {

@@ -9,3 +9,4 @@ import './triggerComponents/daily'
 import './filterComponents/segment';
 import './filterComponents/emailAddress';
 import './filterComponents/afterActivity';
+import './actionComponents/sendMessage';

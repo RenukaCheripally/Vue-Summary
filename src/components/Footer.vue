@@ -20,15 +20,18 @@ export default {
 
 <style>
 .footer {
+  padding: 10px 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-top: 1px solid #E5E5E5;
 }
 
-.delete-button,
+/* .delete-button,
 .save-button {
   position: absolute;
   bottom: 10px;
+  z-index: 2;
 }
 
 .delete-button {
@@ -37,5 +40,5 @@ export default {
 
 .save-button {
   right: 10px;
-}
+} */
 </style>
