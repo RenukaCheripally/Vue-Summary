@@ -5,16 +5,16 @@
   }
 
   .affix {
-    padding: 6px 12px;
+    border: 1px solid var(--gray-base);
+    display: table-cell;
     font-size: 14px;
     font-weight: 400;
     line-height: 1;
+    padding: 6px 12px;
     text-align: center;
-    border: 1px solid var(--gray-base);
-    width: 1%;
-    white-space: nowrap;
     vertical-align: middle;
-    display: table-cell;
+    white-space: nowrap;
+    width: 1%;
   }
 
   .affix.prefix {
@@ -23,20 +23,20 @@
   }
 
   .affix.suffix {
-    border-radius: 0px 4px 4px 0px;
     border-left: 0;
+    border-radius: 0px 4px 4px 0px;
   }
 
   .input {
-    position: relative;
-    z-index: 2;
-    float: left;
-    width: 100%;
-    margin-bottom: 0;
-    display: table-cell;
-    padding: 6px 12px;
     border: 1px solid var(--gray-base);
+    display: table-cell;
+    float: left;
+    margin-bottom: 0;
     margin: 0;
+    padding: 6px 12px;
+    position: relative;
+    width: 100%;
+    z-index: 2;
   }
 
   .input-group {
@@ -51,8 +51,8 @@
   }
 
   .prefix .affix {
-    border-right: 0;
     border-radius: 4px 0px 0px 4px;
+    border-right: 0;
   }
 
   .presuffix .input {
