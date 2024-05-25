@@ -22,7 +22,7 @@
       <v-select type="secondary" class="action-condition" :options="options" v-model="selectedAction" @input="handleSelect" />
       <div v-if="!['add', undefined].includes(selectedAction) && components[selectedAction] !== undefined" class="applied-action-container">
         <header class="action-header">
-          <span class="label">{{ selectedAction }}</span>
+          <span class="label">{{ getLabel }}</span>
           <v-button
             v-if="components[selectedAction] !== undefined"
             :clickButton="addAction"
@@ -89,6 +89,11 @@ export default {
       ]
     }
   },
+  computed: {
+    getLabel() {
+      return this.options.find(option => option.value === this.selectedAction).label
+    }
+  },
   methods: {
     handleUpdate(updatedData) {
       this.newAction = updatedData;
@@ -100,7 +105,7 @@ export default {
       this.appliedActions.push({
         id: this.appliedActions.length + 1,
         action: this.selectedAction,
-        label: this.options.find(option => option.value === this.selectedAction).label,
+        label: this.getLabel,
         value: this.newAction
       })
       console.log(this.appliedActions);
