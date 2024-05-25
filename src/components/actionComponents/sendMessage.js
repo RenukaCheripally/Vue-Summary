@@ -9,16 +9,18 @@ const template = `
         <v-select placeholder="Enter Name" :options="options" v-model="localValue.channel" @input="updateParent"/>
       </div>
       <v-input label="Message Title" placeholder="Message Title" v-model="localValue.title" @input="updateParent"/>
-      <v-input label="Text" placeholder="Text" v-model="localValue.text" @input="updateParent"/>
-      <div>
-        <p>{{ line1 }}</p>
-        <p>{{ line2 }}</p>
-      </div>
-      <div>
-        <p>The following variables are available:</p>
-        <ul v-for="variable in variables" :key="variable.key">
-          <li>{{ variable.label }}</li>
-        </ul>
+      <v-textarea label="Text" placeholder="Text" v-model="localValue.text" @input="updateParent"/>
+      <div class="instructions">
+        <div class="paragraph">
+          <p>{{ line1 }}</p>
+          <p>{{ line2 }}</p>
+        </div>
+        <div class="variables-list">
+          <p>The following variables are available:</p>
+          <ul v-for="variable in variables" :key="variable.key" class="paragraph">
+            <li>{{ variable.label }}</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

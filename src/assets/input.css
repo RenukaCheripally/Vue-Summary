@@ -1,10 +1,7 @@
 .v-input {
-  &:not(:last-child) {
-    margin-right: 15px;
-  }
-
   label {
     display: block;
+    margin-bottom: 4px;
   }
 
   .affix {
@@ -12,9 +9,8 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 1;
-    color: #555;
     text-align: center;
-    border: 1px solid #ccc;
+    border: 1px solid var(--gray-base);
     width: 1%;
     white-space: nowrap;
     vertical-align: middle;
@@ -39,14 +35,15 @@
     margin-bottom: 0;
     display: table-cell;
     padding: 6px 12px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--gray-base);
     margin: 0;
   }
 
   .input-group {
-    position: relative;
-    display: table;
     border-collapse: separate;
+    display: table;
+    position: relative;
+    width: 100%;
   }
 
   .prefix .input {
@@ -60,6 +57,10 @@
 
   .presuffix .input {
     border-radius: 0px;
+  }
+  
+  .secondary {
+    background-color: var(--gray-x-light);
   }
 
   .suffix .input {

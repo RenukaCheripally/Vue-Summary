@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="actions">
     <section class="actions-applied" v-if="appliedActions.length > 0">
       <div v-for="(action, actionIndex) in appliedActions" :key="action.id">
         <div class="applied-action-container">
@@ -8,7 +8,7 @@
             <v-button
               v-if="components[action.action] !== undefined"
               buttonName="Delete"
-              type="danger"
+              type="delete"
               :clickButton="() => deleteAction(actionIndex)"
             />
           </header>
@@ -19,7 +19,7 @@
       </div>
     </section>
     <section>
-      <v-select :options="options" v-model="selectedAction" />
+      <v-select type="secondary" class="action-condition" :options="options" v-model="selectedAction" @input="handleSelect" />
       <div v-if="!['add', undefined].includes(selectedAction) && components[selectedAction] !== undefined" class="applied-action-container">
         <header class="action-header">
           <span class="label">{{ selectedAction }}</span>
@@ -76,22 +76,25 @@ export default {
         },
       ],
       appliedActions: [
-        // {
-        //   id: 1,
-        //   action: 'send_message',
-        //   label: 'Send Message',
-        //   value: {
-        //     delay: '10',
-        //     pointChange: 'plus',
-        //     activityCode: 'MANUAL_BOOKING'
-        //   }
-        // }
+        {
+          id: 1,
+          action: 'send_message',
+          label: 'Send Message',
+          value: {
+            text: 'Please make sure to attend',
+            title: 'Review Meeting',
+            channel: 'web_devs',
+          }
+        }
       ]
     }
   },
   methods: {
     handleUpdate(updatedData) {
       this.newAction = updatedData;
+    },
+    handleSelect() {
+      this.newAction = {};
     },
     addAction() {
       this.appliedActions.push({

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="filters">
     <div class="filters-applied" v-if="appliedFilters.length > 0">
       <div v-for="(filter, filterIndex) in appliedFilters" :key="filter.id">
         <div class="container">
@@ -8,14 +8,14 @@
           <v-button
             v-if="components[filter.filter] !== undefined"
             buttonName="Delete"
-            type="danger"
+            type="delete"
             :clickButton="() => deleteFilter(filterIndex)"
           />
         </div>
       </div>
     </div>
     <div class="container">
-      <v-select :options="options" v-model="selectedFilter" :value="selectedFilter" />
+      <v-select type="secondary" class="filter-condition" :options="options" v-model="selectedFilter" :value="selectedFilter" @input="handleSelect" />
       <component :is="components[selectedFilter]" :value="newFilter" @update="handleUpdate" />
       <v-button
         v-if="components[selectedFilter] !== undefined"
@@ -130,6 +130,9 @@ export default {
   methods: {
     handleUpdate(updatedData) {
       this.newFilter = updatedData;
+    },
+    handleSelect() {
+      this.newFilter = {};
     },
     addFilter() {
       this.appliedFilters.push({

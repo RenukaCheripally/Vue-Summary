@@ -4,7 +4,7 @@ import '@/assets/select.css';
 const template = `
   <div class="v-select" v-bind:class="affix">                           
     <span v-if="affix==='prefix'" class="affix"><slot name="prefix"></slot></span>
-    <select class="select" v-model="selectedValue" @change="handleChange">
+    <select class="select" v-bind:class="type" v-model="selectedValue" @change="handleChange">
       <option v-for="option in options" :value="option.value">{{ option.label }}</option>
     </select>
     <span v-if="affix==='suffix'" class="affix "><slot name="suffix"></slot></span>
@@ -25,7 +25,9 @@ Vue.component('v-select', {
     affix: {
       type: String
     },
-    onSelect: Function,
+    type: {
+      type: String
+    }
   },
   computed: {
     selectedValue: {

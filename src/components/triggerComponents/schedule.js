@@ -1,23 +1,26 @@
 import Vue from "vue";
+import { DefaultConditionComponent } from '../../mixins/conditionComponent.js';
 
-const template = `  <div>
-<v-input affix="prefix" value="time">
-  <template v-slot:prefix>
-    Time
-  </template>
-</v-input>
-<v-select placeholder="Enter Name" :options="options" affix="prefix">
-  <template v-slot:prefix>
-    Frequency
-  </template>
-</v-select>
-</div>`;
+const template = `
+  <div>
+    <v-input affix="prefix" @input="updateParent" v-model="localValue.time" type="secondary">
+      <template v-slot:prefix>
+        Time
+      </template>
+    </v-input>
+    <v-select placeholder="Enter Name" :options="options" affix="prefix" @input="updateParent" v-model="localValue.frequency">
+      <template v-slot:prefix>
+        Frequency
+      </template>
+    </v-select>
+  </div>
+`;
 
 Vue.component('schedule', {
   template,
+  mixins: [DefaultConditionComponent],
   data() {
     return {
-      time: '',
       options: [
         {
           value: 'daily',

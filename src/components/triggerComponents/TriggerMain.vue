@@ -1,15 +1,17 @@
 <template>
-  <div class="frequency-selection">
-    <v-select placeholder="Enter Name" :options="options" v-model="selectedTrigger" />
-    <component :is="components[selectedTrigger]"></component>
+  <div class="triggers">
+    <v-select class="column1" placeholder="Enter Name" :options="options" v-model="selectedTrigger" @input="handleSelect" />
+    <component class="column3" :is="components[selectedTrigger]" :value="newTrigger" @update="handleUpdate" />
   </div>
 </template>
 
 <script>
+import '@/assets/triggers.css'
 export default {
   name: 'TriggerMain',
   data() {
     return {
+      newTrigger: {},
       components: {
         scheduled_time: 'schedule',
         daily: 'daily'
@@ -58,6 +60,14 @@ export default {
         }
       ],
       selectedTrigger: 'select'
+    }
+  },
+  methods: {
+    handleUpdate(updatedData) {
+      this.newTrigger = updatedData;
+    },
+    handleSelect() {
+      this.newTrigger = {};
     }
   }
 }

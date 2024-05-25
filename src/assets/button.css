@@ -1,20 +1,29 @@
 .button {
-  border-radius: 5px;
   border: none;
-  color: white;
+  color: var(--white-base);
   font-size: .9em;
-  font-weight: 600;
-  padding: 6px;
-}
-
-.button:hover {
-  cursor: pointer;
-}
-
-.save {
-  background-color: #00A7E1;
-}
-
-.danger {
-  background-color: #F24461;
+  padding: 6px 10px;
+  border: solid 1px var(--gray-medium);
+  &.danger {
+    border: none;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+  
+  &.save {
+    background-color: var(--blue-medium);
+    border-radius: 3px;
+  }
+  
+  &.danger {
+    background-color: var(--melon-light);
+    color: var(--melon-medium);
+    border-radius: 3px;
+  }
+  
+  &.delete {
+    background-color: var(--gray-x-light);
+    color: var(--gray-dark);
+  }
 }

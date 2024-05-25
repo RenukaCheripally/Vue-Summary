@@ -24,7 +24,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #E5E5E5;
+  border-top: 1px solid var(--gray-light);
 }
 
 /* .delete-button,

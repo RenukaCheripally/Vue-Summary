@@ -1,0 +1,12 @@
+.triggers {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+
+  .column1 {
+    grid-column: 1;
+  }
+  .column3 {
+    grid-column: 3;
+  }
+}

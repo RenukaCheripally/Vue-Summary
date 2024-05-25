@@ -9,13 +9,13 @@ const template = `
   <label v-if="label" class="label">{{ label }}</label>
   <div class="input-group" v-bind:class="affix">                           
     <span v-if="['prefix', 'presuffix'].includes(affix)" class="affix prefix"><slot name="prefix"></slot></span>
-    <input class="input" v-bind:class="type" v-bind:placeholder="placeholder" type="text" v-model="inputValue" name="input">
+    <textarea class="input" v-bind:class="type" v-bind:placeholder="placeholder" type="text" v-model="inputValue" name="input" cols="30" rows="10"></textarea>
     <span v-if="['suffix', 'presuffix'].includes(affix)" class="affix suffix"><slot name="suffix"></slot></span>
   </div>
   </div>
 `;
 
-Vue.component('v-input', {
+Vue.component('v-textarea', {
   template,
   props: {
     value: {

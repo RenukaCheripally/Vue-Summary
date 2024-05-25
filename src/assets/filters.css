@@ -1,6 +1,16 @@
-.filters-applied {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-bottom: 15px;
+.filters {
+  .filters-applied {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+  .container {
+    align-items: unset;
+    grid-template-columns: 3fr 5fr 1fr;
+
+    .filter-condition {
+      width: fit-content;
+    }
+  }
 }

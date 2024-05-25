@@ -20,10 +20,20 @@ Vue.component('v-checkbox', {
       type: String
     }
   },
+  computed: {
+    checkboxValue: {
+      get() {
+        return this.value || '';
+      },
+      set(newValue) {
+        this.$emit('input', newValue);
+      }
+    }
+  },
   template: `
     <div class="v-checkbox">
-        <input class="checkbox" type="checkbox" v-model="value">
-        <label class="label">{{ label ? label : ( value ? trueText : falseText )}}</label>
+      <input class="checkbox" type="checkbox" v-model="checkboxValue">
+      <label class="label">{{ label ? label : ( value ? trueText : falseText )}}</label>
     </div>
   `
 });
