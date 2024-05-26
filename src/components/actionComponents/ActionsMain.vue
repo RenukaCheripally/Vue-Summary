@@ -47,7 +47,7 @@ export default {
       options: [
         {
           value: 'add',
-          label: 'Add Condition'
+          label: 'Add action'
         },
         {
           value: 'send_message',

@@ -1,6 +1,7 @@
 <template>
   <card>
     <header class="main-header">
+      <img class="header-image" src="../assets/images/edit.svg" />
       <h1>Create Automated Action</h1>
     </header>
     <content class="content">

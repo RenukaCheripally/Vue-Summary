@@ -18,6 +18,17 @@ const store = new Vuex.Store({
       appliedFilters: [],
       appliedActions: []
     },
+    newAutomation1: {
+      name: '',
+      enabled: false,
+      validFrom: '',
+      validUntil: '',
+      selectedTrigger: 'select',
+      triggerDetails: {},
+      maximumFrequency: {},
+      appliedFilters: [],
+      appliedActions: []
+    },
     newAutomation: {
       name: 'designers feature',
       enabled: true,

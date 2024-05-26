@@ -2,9 +2,12 @@ import Vue from 'vue';
 import '../assets/button.css'
 
 const template = `
-<div>
-    <button class="button" v-bind:class="type" v-on:click="click">{{ buttonName }}</button>
-</div>
+  <div>
+    <button class="button" v-bind:class="type" v-on:click="click">
+      {{ buttonName }}
+      <slot></slot>
+    </button>
+  </div>
 `;
 
 Vue.component('v-button', {

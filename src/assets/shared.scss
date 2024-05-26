@@ -59,8 +59,14 @@ h1 {
 }
 
 .main-header {
+  align-items: center;
+  display: flex;
+  gap: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
+  .header-image {
+    width: 20px;
+  }
 }
 
 p {
