@@ -1,18 +1,23 @@
 <template>
   <div class="footer">
-    <v-button class="delete-button" @click="deleteItem" buttonName="Delete" type="danger" />
-    <v-button class="save-button" @click="saveItem" buttonName="Save" type="save" />
+    <v-button class="delete-button" :clickButton="deleteAutomation" buttonName="Delete" type="danger" />
+    <v-button class="save-button" :clickButton="saveAutomation" buttonName="Save" type="save" />
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 export default {
+  computed: {
+    ...mapGetters(['getAutomation'])
+  },
   methods: {
-    deleteItem() {
-      // Add your delete logic here
+    ...mapActions(['resetAutomation']),
+    saveAutomation() {
+      console.log(this.getAutomation);
     },
-    saveItem() {
-      // Add your save logic here
+    deleteAutomation() {
+      this.resetAutomation();
     }
   }
 }
@@ -26,19 +31,4 @@ export default {
   align-items: center;
   border-top: 1px solid var(--gray-light);
 }
-
-/* .delete-button,
-.save-button {
-  position: absolute;
-  bottom: 10px;
-  z-index: 2;
-}
-
-.delete-button {
-  left: 10px;
-}
-
-.save-button {
-  right: 10px;
-} */
 </style>

@@ -7,12 +7,11 @@
 
 <script>
 import '@/assets/triggers.css'
-import { mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 export default {
   name: 'TriggerMain',
   data() {
     return {
-      newTrigger: {},
       components: {
         scheduled_time: 'schedule',
         daily: 'daily'
@@ -60,7 +59,28 @@ export default {
           label: 'Coupon Redeemed'
         }
       ],
-      selectedTrigger: 'select'
+    }
+  },
+  created() {
+    this.newTrigger = this.getAutomationTriggerDetails;
+  },
+  computed: {
+    ...mapGetters(['getAutomationTriggerDetails', 'getAutomationSelectedTrigger']),
+    selectedTrigger: {
+      get() {
+        return this.getAutomationSelectedTrigger;
+      },
+      set(newValue) {
+        this.updateAutomation({selectedTrigger: newValue})
+      }
+    },
+    newTrigger: {
+      get() {
+        return this.getAutomationTriggerDetails;
+      },
+      set(newValue) {
+        this.updateAutomation({triggerDetails: newValue})
+      }
     }
   },
   methods: {

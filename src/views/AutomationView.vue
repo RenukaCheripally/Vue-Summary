@@ -66,11 +66,16 @@ export default {
   },
   data() {
     return {
-      localData: {
-        maximumFrequency: {
-          onlyOnce: false,
-          days: null
-        }
+    }
+  },
+  computed: {
+    ...mapGetters(['getAutomation', '']),
+    localData: {
+      get() {
+        return this.getAutomation;
+      },
+      set(newValue) {
+        this.updateAutomation(newValue);
       }
     }
   },

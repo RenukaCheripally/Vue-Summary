@@ -19,7 +19,7 @@ Vue.component('v-input', {
   template,
   props: {
     value: {
-      type: String
+      type: String|Number
     },
     label: {
       type: String
