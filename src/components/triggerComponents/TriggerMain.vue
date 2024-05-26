@@ -7,6 +7,7 @@
 
 <script>
 import '@/assets/triggers.css'
+import { mapActions } from 'vuex';
 export default {
   name: 'TriggerMain',
   data() {
@@ -63,10 +64,18 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['updateAutomation']),
+    // methods
     handleUpdate(updatedData) {
+      // update store
+      this.updateAutomation({triggerDetails: updatedData});
+      // assign data
       this.newTrigger = updatedData;
     },
-    handleSelect() {
+    handleSelect(value) {
+      // update store
+      this.updateAutomation({selectedTrigger: value});
+      // refresh trigger details on change of selection
       this.newTrigger = {};
     }
   }

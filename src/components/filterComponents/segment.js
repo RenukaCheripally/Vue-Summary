@@ -1,5 +1,4 @@
 import Vue from "vue";
-Vue.config.devtools = true;
 import { DefaultConditionComponent } from '../../mixins/conditionComponent.js';
 
 const template = `
