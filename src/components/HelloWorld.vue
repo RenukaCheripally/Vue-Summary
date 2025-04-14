@@ -32,7 +32,9 @@ export default {
     return  {
       header: 'My Sample App',
       counter: 40,
-      message: 'renu'
+      message: 'renu',
+      valid_only: null,
+      is_required: false
     }
   }
 }
