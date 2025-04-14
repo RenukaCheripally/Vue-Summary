@@ -26,7 +26,9 @@ export default {
     ...mapGetters(['getCount', 'getCounter'])
   },
   components: {
-    errorMessage
+    errorMessage,
+    valid_only: null,
+    is_required: false
   },
   data() {
     return  {
